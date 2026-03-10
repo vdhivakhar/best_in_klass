@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Best In Klass – Pure Veg Restaurant, Whitefield</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #1a5c2a;
+      --green-light: #2e8b47;
+      --gold: #c9922a;
+      --gold-light: #f0c060;
+      --cream: #fdf6eb;
+      --dark: #1a1a14;
+      --text: #3a3228;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(253,246,235,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,146,42,0.2);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 900;
+      color: var(--green);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text);
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
+      text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--green); color: #fff !important;
+      padding: 10px 22px; border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green-light) !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(46,139,71,0.12) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9922a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+        var(--cream);
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,146,42,0.12); border: 1px solid rgba(201,146,42,0.3);
+      color: var(--gold); padding: 6px 16px; border-radius: 100px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge::before { content: '🌿'; font-size: 0.9rem; }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1.05; font-weight: 900;
+      color: var(--green);
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      margin: 24px auto 0;
+      max-width: 540px;
+      font-size: 1.1rem; font-weight: 300; line-height: 1.7;
+      color: #6b5e4e;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-meta {
+      display: flex; align-items: center; gap: 24px;
+      margin-top: 36px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .meta-pill {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 500; color: var(--text);
+    }
+    .meta-pill .icon { font-size: 1.1rem; }
+    .meta-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+
+    .hero-btns {
+      display: flex; gap: 16px; margin-top: 44px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .btn-primary {
+      background: var(--green); color: #fff;
+      padding: 16px 36px; border-radius: 6px;
+      font-size: 0.95rem; font-weight: 500; letter-spacing: 0.3px;
+      text-decoration: none; transition: transform 0.2s, background 0.2s;
+    }
+    .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid var(--green); color: var(--green);
+      padding: 14px 34px; border-radius: 6px;
+      font-size: 0.95rem; font-weight: 500;
+      text-decoration: none; transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--green); color: #fff; transform: translateY(-2px); }
+
+    /* leaf decoration */
+    .hero-leaves {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      font-size: 2rem; letter-spacing: 12px; opacity: 0.3;
+      animation: fadeUp 1s 0.6s ease both;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.2;
+      color: var(--green);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-desc {
+      margin-top: 16px; max-width: 560px;
+      font-size: 1rem; font-weight: 300; line-height: 1.8; color: #6b5e4e;
+    }
+
+    /* ── ABOUT ── */
+    .about-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card {
+      background: var(--green);
+      border-radius: 16px;
+      padding: 56px 40px;
+      color: #fff;
+      position: relative; overflow: hidden;
+    }
+    .about-card::before {
+      content: '';
+      position: absolute; top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: rgba(201,146,42,0.15);
+      border-radius: 50%;
+    }
+    .about-card-icon { font-size: 3.5rem; margin-bottom: 20px; }
+    .about-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; margin-bottom: 12px;
+    }
+    .about-card p { font-size: 0.95rem; line-height: 1.8; opacity: 0.85; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px;
+    }
+    .stat-box {
+      background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--gold-light);
+    }
+    .stat-lbl { font-size: 0.78rem; opacity: 0.7; margin-top: 4px; }
+
+    /* ── MENU ── */
+    .menu-section { background: var(--green); color: #fff; }
+    .menu-section .section-title { color: var(--gold-light); }
+    .menu-section .section-desc { color: rgba(255,255,255,0.7); }
+    .menu-section .section-label { color: rgba(240,192,96,0.8); }
+
+    .menu-tabs {
+      display: flex; gap: 8px; margin: 44px 0 32px; flex-wrap: wrap;
+    }
+    .tab {
+      padding: 10px 24px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.6); font-size: 0.88rem; cursor: pointer;
+      transition: all 0.2s; background: transparent;
+    }
+    .tab.active, .tab:hover {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+      font-weight: 500;
+    }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+    }
+    .menu-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 28px;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .menu-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.1); }
+    .menu-card-top {
+      display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;
+    }
+    .menu-item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 600; color: #fff; flex: 1;
+    }
+    .menu-item-price {
+      font-size: 1rem; font-weight: 500; color: var(--gold-light); margin-left: 12px;
+    }
+    .menu-item-desc { font-size: 0.87rem; line-height: 1.7; color: rgba(255,255,255,0.55); }
+    .veg-dot {
+      display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      background: #4caf50; border: 1.5px solid #2e7d32; margin-right: 8px;
+      vertical-align: middle;
+    }
+    .menu-tag {
+      display: inline-block; margin-top: 12px;
+      font-size: 0.72rem; padding: 3px 10px; border-radius: 100px;
+      border: 1px solid rgba(201,146,42,0.4); color: var(--gold-light);
+    }
+
+    /* ── WHY US ── */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 56px;
+    }
+    .feature-card {
+      padding: 36px 28px;
+      border: 1px solid rgba(201,146,42,0.2); border-radius: 12px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(26,92,42,0.1);
+    }
+    .feature-icon { font-size: 2.4rem; margin-bottom: 18px; }
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--green); margin-bottom: 10px;
+    }
+    .feature-card p { font-size: 0.9rem; line-height: 1.8; color: #6b5e4e; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: #f0e8d8; }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px;
+    }
+    .review-card {
+      background: #fff; border-radius: 12px; padding: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; }
+    .review-text {
+      font-size: 0.92rem; line-height: 1.8; color: #5a4e40;
+      font-style: italic; margin-bottom: 20px;
+    }
+    .reviewer {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .reviewer-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: #fff;
+    }
+    .reviewer-name { font-weight: 500; font-size: 0.88rem; color: var(--text); }
+    .reviewer-source { font-size: 0.76rem; color: #999; }
+
+    /* ── LOCATION ── */
+    .location-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .info-block { margin-bottom: 28px; }
+    .info-block h4 {
+      font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--gold); margin-bottom: 8px;
+    }
+    .info-block p { font-size: 0.95rem; line-height: 1.8; color: var(--text); }
+    .map-placeholder {
+      background: var(--green);
+      border-radius: 16px; overflow: hidden;
+      height: 360px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; color: #fff; text-align: center;
+      padding: 32px;
+    }
+    .map-placeholder .map-icon { font-size: 3rem; margin-bottom: 16px; }
+    .map-placeholder h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; margin-bottom: 10px;
+    }
+    .map-placeholder p { font-size: 0.88rem; opacity: 0.75; line-height: 1.7; }
+    .map-placeholder a {
+      margin-top: 24px; display: inline-block;
+      background: var(--gold); color: var(--dark);
+      padding: 12px 28px; border-radius: 6px;
+      text-decoration: none; font-weight: 500; font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+    .map-placeholder a:hover { background: var(--gold-light); }
+
+    /* ── ORDER CTA ── */
+    .order-cta {
+      background: linear-gradient(135deg, var(--green) 0%, #0f3a1a 100%);
+      color: #fff; text-align: center; padding: 100px 24px;
+    }
+    .order-cta h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 16px;
+    }
+    .order-cta p { font-size: 1.05rem; opacity: 0.75; margin-bottom: 44px; }
+    .order-platforms {
+      display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    }
+    .platform-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 16px 32px; border-radius: 8px;
+      text-decoration: none; font-weight: 500; font-size: 0.95rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .platform-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .zomato-btn { background: #e23744; color: #fff; }
+    .swiggy-btn { background: #fc8019; color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.5);
+      text-align: center; padding: 40px 24px;
+      font-size: 0.85rem;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .about-wrap, .location-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .features-grid, .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Best In <span>Klass</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Find Us</a></li>
+    <li><a href="#order" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">100% Pure Vegetarian · Whitefield, Bengaluru</div>
+  <h1>Best In <em>Klass</em><br/>Veg Restaurant</h1>
+  <p class="hero-sub">
+    Authentic South Indian flavours crafted with fresh ingredients and love —
+    your everyday dining destination in the heart of Whitefield.
+  </p>
+  <div class="hero-meta">
+    <div class="meta-pill"><span class="icon">⭐</span> Highly Rated on Zomato & Swiggy</div>
+    <div class="meta-sep"></div>
+    <div class="meta-pill"><span class="icon">📍</span> Sigma Soft Tech Park</div>
+    <div class="meta-sep"></div>
+    <div class="meta-pill"><span class="icon">🕐</span> Open Daily</div>
+  </div>
+  <div class="hero-btns">
+    <a href="#menu" class="btn-primary">Explore Menu</a>
+    <a href="#order" class="btn-outline">Order Online</a>
+  </div>
+  <div class="hero-leaves">🌿 🍃 🌿</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-wrap">
+      <div>
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Simple food, <em>authentic</em> soul</h2>
+        <p class="section-desc">
+          Best In Klass has been serving the IT community of Whitefield with honest,
+          wholesome South Indian vegetarian food. Located inside Sigma Soft Tech Park,
+          we are the go-to spot for a satisfying breakfast, quick lunch, or a relaxed
+          dinner after a long day.
+        </p>
+        <p class="section-desc" style="margin-top:16px;">
+          Every dish is prepared fresh daily using traditional recipes — crispy dosas,
+          fluffy idlis, comforting upma, and much more. Simple. Clean. Delicious.
+        </p>
+      </div>
+      <div class="about-visual">
+        <div class="about-card">
+          <div class="about-card-icon">🍛</div>
+          <h3>Pure Vegetarian Kitchen</h3>
+          <p>No non-veg. No compromise. 100% vegetarian, prepared fresh every single day with the finest local ingredients.</p>
+          <div class="about-stats">
+            <div class="stat-box">
+              <div class="stat-num">50+</div>
+              <div class="stat-lbl">Menu Items</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">4.0★</div>
+              <div class="stat-lbl">Avg. Rating</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">1000+</div>
+              <div class="stat-lbl">Happy Regulars</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">Daily</div>
+              <div class="stat-lbl">Fresh Prep</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="menu-section">
+  <div class="container">
+    <span class="section-label">What We Serve</span>
+    <h2 class="section-title">Our <em>Menu</em></h2>
+    <p class="section-desc">Every dish made fresh, every day. Authentic flavours from South India and beyond.</p>
+
+    <div class="menu-tabs">
+      <button class="tab active" onclick="showCategory('breakfast')">Breakfast</button>
+      <button class="tab" onclick="showCategory('tiffin')">Tiffin & Snacks</button>
+      <button class="tab" onclick="showCategory('meals')">Meals & Thali</button>
+      <button class="tab" onclick="showCategory('beverages')">Beverages</button>
+    </div>
+
+    <div class="menu-grid" id="menu-items"></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">Freshness you can <em>taste</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🥬</div>
+        <h3>100% Pure Veg</h3>
+        <p>A strictly vegetarian kitchen — no cross-contamination, no compromise. Perfect for pure veg families and professionals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🕐</div>
+        <h3>Fresh Daily Prep</h3>
+        <p>We start cooking from scratch every morning. No pre-made, no frozen. Just fresh batters, fresh chutneys, fresh curries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Pocket Friendly</h3>
+        <p>Great food doesn't have to be expensive. Our portions are generous and priced for everyday dining — especially for tech park visitors.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>Prime Location</h3>
+        <p>Right inside Sigma Soft Tech Park, Whitefield. Steps away from offices — ideal for quick lunches and post-work dinners.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>Warm Service</h3>
+        <p>Our friendly staff ensures every visit feels like a meal at home. Clean ambiance, prompt service, and a welcoming smile.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛵</div>
+        <h3>Quick Delivery</h3>
+        <p>Can't come in? Order on Zomato or Swiggy for fast delivery to your desk or home. Hot food, right on time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="testimonials">
+  <div class="container">
+    <div style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="section-label">What Guests Say</span>
+      <h2 class="section-title">Loved by <em>regulars</em></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Best dosas in Whitefield hands down. The masala filling is perfectly spiced and the chutney is always fresh. My daily breakfast stop!"</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">R</div>
+          <div>
+            <div class="reviewer-name">Rahul M.</div>
+            <div class="reviewer-source">via Zomato</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The lunch thali is incredible value. Dal, sabzi, rice, roti — all very fresh. Love that it's pure veg. Has become our team's regular lunch spot."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">P</div>
+          <div>
+            <div class="reviewer-name">Priya S.</div>
+            <div class="reviewer-source">via Swiggy</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★☆</div>
+        <p class="review-text">"Idli sambhar here is excellent. Soft, fluffy idlis with flavourful sambhar and fresh coconut chutney. Very affordable for the quality you get."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">A</div>
+          <div>
+            <div class="reviewer-name">Anil K.</div>
+            <div class="reviewer-source">via Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="container">
+    <div class="location-wrap">
+      <div>
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">Come visit <em>us</em></h2>
+        <p class="section-desc" style="margin-bottom:40px;">We're easy to find right in the heart of Whitefield's tech corridor.</p>
+        <div class="info-block">
+          <h4>Address</h4>
+          <p>Ground Floor, Sigma Soft Tech Park<br/>
+             Whitefield Main Road, Varthur Kodi<br/>
+             Whitefield, Bengaluru – 560066<br/>
+             (Near Columbia Asia Hospital & Virginia Mall)</p>
+        </div>
+        <div class="info-block">
+          <h4>Opening Hours</h4>
+          <p>Monday – Saturday: 7:30 AM – 10:00 PM<br/>
+             Sunday: 8:00 AM – 9:00 PM</p>
+        </div>
+        <div class="info-block">
+          <h4>Order Online</h4>
+          <p>Available on <strong>Zomato</strong> and <strong>Swiggy</strong><br/>
+             Search "Best In Klass" in Whitefield</p>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <div class="map-icon">📍</div>
+        <h3>Sigma Soft Tech Park<br/>Whitefield</h3>
+        <p>Varthur Kodi, Whitefield Main Road<br/>Opposite LG Show Room &<br/>Columbia Asia Hospital</p>
+        <a href="https://maps.google.com/?q=Sigma+Soft+Tech+Park+Whitefield+Bangalore" target="_blank">Open in Google Maps →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER CTA -->
+<section id="order" class="order-cta">
+  <div class="container">
+    <h2>Hungry? Order right now 🍽️</h2>
+    <p>Get fresh, hot food delivered to your desk or doorstep</p>
+    <div class="order-platforms">
+      <a href="https://www.zomato.com/bangalore/best-in-klass-whitefield-bangalore/order" target="_blank" class="platform-btn zomato-btn">
+        🔴 Order on Zomato
+      </a>
+      <a href="https://www.swiggy.com/city/bangalore/best-in-klass-sigma-soft-tech-park-whitefield-rest50858" target="_blank" class="platform-btn swiggy-btn">
+        🟠 Order on Swiggy
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Best In Klass Veg Restaurant</strong> · Sigma Soft Tech Park, Whitefield, Bengaluru</p>
+  <p style="margin-top:8px;">Pure Vegetarian · South Indian Cuisine · Fresh Daily</p>
+</footer>
+
+<script>
+  const menuData = {
+    breakfast: [
+      { name: "Masala Dosa", price: "₹70", desc: "Crispy fermented rice crepe with spiced potato filling, served with sambar & two chutneys.", tag: "Bestseller" },
+      { name: "Idli (2 pcs)", price: "₹50", desc: "Fluffy steamed rice cakes served with piping hot sambar and fresh coconut chutney.", tag: "Classic" },
+      { name: "Plain Dosa", price: "₹55", desc: "Golden thin crispy dosa with sambar and chutney. Light and satisfying.", tag: "" },
+      { name: "Rava Idli", price: "₹60", desc: "Soft semolina idlis topped with cashews & curry leaves, served with chutney.", tag: "Chef's Pick" },
+      { name: "Set Dosa (3 pcs)", price: "₹65", desc: "Thick, spongy, small dosas served in a set of three with potato curry & chutney.", tag: "" },
+      { name: "Pongal", price: "₹55", desc: "Comforting khichdi of rice & moong dal, tempered with pepper, cumin & ghee.", tag: "Morning Special" },
+    ],
+    tiffin: [
+      { name: "Upma", price: "₹50", desc: "Savory semolina porridge with vegetables, mustard, and curry leaves. A classic comfort.", tag: "" },
+      { name: "Medu Vada (2 pcs)", price: "₹55", desc: "Crispy lentil fritters with a soft interior, served with sambar and chutney.", tag: "Crispy & Crunchy" },
+      { name: "Poha", price: "₹45", desc: "Flattened rice cooked with onions, mustard, turmeric, lemon — light and fresh.", tag: "" },
+      { name: "Rava Dosa", price: "₹75", desc: "Lacy, crispy dosa made from semolina with onions and peppercorns.", tag: "Popular" },
+      { name: "Mysore Masala Dosa", price: "₹85", desc: "Red chutney-spread dosa with spiced potato filling — bold and flavourful.", tag: "Spicy" },
+      { name: "Gobi Manchurian (dry)", price: "₹95", desc: "Indo-Chinese crispy cauliflower tossed in spicy manchurian sauce.", tag: "Fusion" },
+    ],
+    meals: [
+      { name: "South Indian Meals", price: "₹120", desc: "Full rice plate with dal, 2 sabzis, sambar, rasam, papad, and sweet. Traditional & filling.", tag: "Bestseller" },
+      { name: "North Indian Thali", price: "₹130", desc: "Dal makhani, paneer sabzi, 2 rotis, rice, salad, and sweet. A complete meal.", tag: "Weekend Special" },
+      { name: "Veg Biryani", price: "₹110", desc: "Fragrant basmati rice cooked with seasonal vegetables and aromatic spices, served with raita.", tag: "" },
+      { name: "Paneer Butter Masala + Roti", price: "₹130", desc: "Rich, creamy tomato-based paneer curry served with 3 soft rotis.", tag: "Family Favourite" },
+      { name: "Curd Rice", price: "₹70", desc: "Cooling yoghurt rice seasoned with mustard, curry leaves, and mild green chilli.", tag: "Light Meal" },
+      { name: "Rasam Rice", price: "₹75", desc: "Tangy tamarind pepper rasam poured over steaming rice. A homely classic.", tag: "" },
+    ],
+    beverages: [
+      { name: "Filter Coffee", price: "₹30", desc: "Strong decoction blended with frothy milk. South India's iconic brew.", tag: "Must Try" },
+      { name: "Masala Chai", price: "₹25", desc: "Ginger-cardamom spiced tea, sweetened just right.", tag: "" },
+      { name: "Fresh Lime Soda", price: "₹35", desc: "Chilled lemonade, sweet or salty or mixed — your call.", tag: "Refreshing" },
+      { name: "Buttermilk", price: "₹30", desc: "Chilled spiced lassi with cumin, coriander & curry leaves. The perfect cooler.", tag: "" },
+      { name: "Mango Lassi", price: "₹55", desc: "Thick blended yoghurt with sweet Alphonso mango pulp.", tag: "Seasonal" },
+    ]
+  };
+
+  function showCategory(cat) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    const grid = document.getElementById('menu-items');
+    grid.innerHTML = menuData[cat].map(item => `
+      <div class="menu-card">
+        <div class="menu-card-top">
+          <div class="menu-item-name"><span class="veg-dot"></span>${item.name}</div>
+          <div class="menu-item-price">${item.price}</div>
+        </div>
+        <div class="menu-item-desc">${item.desc}</div>
+        ${item.tag ? `<span class="menu-tag">${item.tag}</span>` : ''}
+      </div>
+    `).join('');
+  }
+
+  // init
+  showCategory('breakfast');
+  document.querySelector('.tab').classList.add('active');
+</script>
+</body>
+</html>
