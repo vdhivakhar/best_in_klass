@@ -285,25 +285,15 @@
 
     /* show more */
     .show-more-wrap { text-align:center; margin-top:36px; }
-    .btn-show-more {
-      background:transparent;
-      border:2px solid rgba(255,255,255,0.25);
-      color:rgba(255,255,255,0.8);
-      padding:13px 36px; border-radius:100px;
-      font-size:0.9rem; font-weight:700; cursor:pointer;
-      font-family:'Nunito',sans-serif;
-      transition: all 0.2s;
-      display:inline-flex; align-items:center; gap:8px;
+    .btn-full-menu {
+      display:inline-flex; align-items:center; gap:10px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color:#fff; padding:15px 40px; border-radius:100px;
+      font-size:0.95rem; font-weight:700; text-decoration:none;
+      box-shadow: 0 6px 20px rgba(224,25,125,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .btn-show-more:hover {
-      border-color:var(--pink); color:var(--pink);
-      box-shadow: 0 0 20px rgba(224,25,125,0.2);
-    }
-    .arrow { transition: transform 0.3s; display:inline-block; }
-    .arrow.open { transform: rotate(180deg); }
-
-    .extra-items { display:none; }
-    .extra-items.visible { display:contents; }
+    .btn-full-menu:hover { transform:translateY(-3px); box-shadow: 0 10px 28px rgba(224,25,125,0.5); }
 
     /* ─── FEATURES ─── */
     .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; }
@@ -504,10 +494,7 @@
     <div class="menu-grid" id="menu-grid"></div>
 
     <div class="show-more-wrap">
-      <button class="btn-show-more" id="show-more-btn" onclick="toggleMore()">
-        <span id="show-more-text">Show All Items</span>
-        <span class="arrow" id="show-arrow">▼</span>
-      </button>
+      <a href="menu.html" class="btn-full-menu">View Full Menu →</a>
     </div>
   </div>
 </section>
@@ -614,13 +601,6 @@
         { name:"Masala Dosa", desc:"Crispy fermented rice crepe with spiced potato filling, served with sambar & two chutneys.", tag:"Bestseller" },
         { name:"Idli (2 pcs)", desc:"Fluffy steamed rice cakes served with piping hot sambar and fresh coconut chutney.", tag:"Classic" },
         { name:"Set Dosa (3 pcs)", desc:"Thick, spongy small dosas served with potato curry & chutney.", tag:"Popular" },
-      ],
-      more: [
-        { name:"Plain Dosa", desc:"Golden thin crispy dosa with sambar and chutney. Light and satisfying.", tag:"" },
-        { name:"Rava Idli", desc:"Soft semolina idlis topped with cashews & curry leaves, served with chutney.", tag:"Chef's Pick" },
-        { name:"Pongal", desc:"Comforting khichdi of rice & moong dal, tempered with pepper, cumin & ghee.", tag:"Morning Special" },
-        { name:"Poha", desc:"Flattened rice cooked with onions, mustard, turmeric, lemon — light and fresh.", tag:"" },
-        { name:"Upma", desc:"Savory semolina porridge with vegetables, mustard, and curry leaves.", tag:"" },
       ]
     },
     tiffin: {
@@ -628,11 +608,6 @@
         { name:"Medu Vada (2 pcs)", desc:"Crispy lentil fritters with a soft interior, served with sambar and chutney.", tag:"Bestseller" },
         { name:"Rava Dosa", desc:"Lacy, crispy semolina dosa with onions and peppercorns.", tag:"Popular" },
         { name:"Mysore Masala Dosa", desc:"Red chutney-spread dosa with spiced potato filling — bold and flavourful.", tag:"Spicy" },
-      ],
-      more: [
-        { name:"Gobi Manchurian (dry)", desc:"Indo-Chinese crispy cauliflower tossed in spicy manchurian sauce.", tag:"Fusion" },
-        { name:"Bread Upma", desc:"Crispy bread cooked with onions, tomatoes, and spices.", tag:"" },
-        { name:"Onion Uttapam", desc:"Thick rice pancake topped with fresh onions and green chillies.", tag:"" },
       ]
     },
     meals: {
@@ -640,12 +615,6 @@
         { name:"South Indian Meals", desc:"Full rice plate with dal, 2 sabzis, sambar, rasam, papad, and sweet.", tag:"Bestseller" },
         { name:"North Indian Thali", desc:"Dal makhani, paneer sabzi, 2 rotis, rice, salad, and sweet.", tag:"Weekend Special" },
         { name:"Veg Biryani", desc:"Fragrant basmati rice with seasonal vegetables and aromatic spices, served with raita.", tag:"Popular" },
-      ],
-      more: [
-        { name:"Paneer Butter Masala + Roti", desc:"Rich, creamy tomato-based paneer curry served with 3 soft rotis.", tag:"Family Favourite" },
-        { name:"Curd Rice", desc:"Cooling yoghurt rice seasoned with mustard, curry leaves, and mild green chilli.", tag:"Light Meal" },
-        { name:"Rasam Rice", desc:"Tangy tamarind pepper rasam poured over steaming rice.", tag:"" },
-        { name:"Dal Rice", desc:"Comforting yellow dal with steamed rice and ghee.", tag:"" },
       ]
     },
     beverages: {
@@ -653,35 +622,20 @@
         { name:"Filter Coffee", desc:"Strong decoction blended with frothy milk. South India's iconic brew.", tag:"Must Try" },
         { name:"Masala Chai", desc:"Ginger-cardamom spiced tea, sweetened just right.", tag:"" },
         { name:"Fresh Lime Soda", desc:"Chilled lemonade, sweet or salty or mixed — your call.", tag:"Refreshing" },
-      ],
-      more: [
-        { name:"Buttermilk", desc:"Chilled spiced lassi with cumin, coriander & curry leaves.", tag:"" },
-        { name:"Mango Lassi", desc:"Thick blended yoghurt with sweet Alphonso mango pulp.", tag:"Seasonal" },
-        { name:"Cold Coffee", desc:"Chilled blended coffee with milk and a hint of vanilla.", tag:"" },
       ]
     }
   };
 
   let currentCat = 'breakfast';
-  let showingMore = false;
 
   function renderMenu() {
     const grid = document.getElementById('menu-grid');
     const data = menuData[currentCat];
-    const topHTML = data.top.map(item => cardHTML(item, false)).join('');
-    const moreHTML = data.more.map(item => cardHTML(item, true)).join('');
-    grid.innerHTML = topHTML + moreHTML;
-    // apply visibility
-    document.querySelectorAll('.extra-items').forEach(el => {
-      el.classList.toggle('visible', showingMore);
-    });
-    // update button
-    document.getElementById('show-more-text').textContent = showingMore ? 'Show Less' : 'Show All Items';
-    document.getElementById('show-arrow').classList.toggle('open', showingMore);
+    grid.innerHTML = data.top.map(item => cardHTML(item)).join('');
   }
 
-  function cardHTML(item, isExtra) {
-    return `<div class="menu-card ${isExtra ? 'extra-items' : ''}">
+  function cardHTML(item) {
+    return `<div class="menu-card">
       ${item.tag === 'Bestseller' ? '<span class="bestseller-tag">⭐ Bestseller</span>' : ''}
       <div class="menu-card-top">
         <div class="menu-item-name"><span class="veg-badge"></span>${item.name}</div>
@@ -695,16 +649,9 @@
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     e.target.classList.add('active');
     currentCat = cat;
-    showingMore = false;
     renderMenu();
   }
 
-  function toggleMore() {
-    showingMore = !showingMore;
-    renderMenu();
-  }
-
-  // init
   renderMenu();
 </script>
 </body>

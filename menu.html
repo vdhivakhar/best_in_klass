@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Full Menu – Best In Klass Veg Restaurant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Playfair+Display:ital,wght@0,700;0,900;1,600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue:       #1a3fa3;
+      --blue-dark:  #122d7a;
+      --blue-light: #2f5de0;
+      --pink:       #e0197d;
+      --pink-light: #f53f99;
+      --pink-pale:  #fde8f3;
+      --white:      #ffffff;
+      --off:        #f4f7ff;
+      --text:       #1e1e2e;
+      --muted:      #5a607a;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Nunito',sans-serif; background:var(--off); color:var(--text); }
+
+    nav {
+      position:fixed; top:0; width:100%; z-index:200;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 48px;
+      background:rgba(255,255,255,0.97);
+      backdrop-filter:blur(12px);
+      box-shadow:0 2px 20px rgba(26,63,163,0.08);
+    }
+    .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .logo-icon {
+      width:40px; height:40px; border-radius:10px;
+      background:linear-gradient(135deg,var(--blue),var(--pink));
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; color:#fff;
+      box-shadow:0 4px 14px rgba(224,25,125,0.3);
+    }
+    .logo-text { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:900; color:var(--blue); line-height:1.1; }
+    .logo-text span { color:var(--pink); }
+    .logo-sub { font-size:0.62rem; color:var(--muted); font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+    .nav-back {
+      display:flex; align-items:center; gap:8px;
+      text-decoration:none; color:var(--blue); font-weight:700; font-size:0.88rem;
+      padding:9px 20px; border-radius:100px;
+      border:1.5px solid rgba(26,63,163,0.2);
+      transition:all 0.2s;
+    }
+    .nav-back:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+
+    .menu-hero {
+      background:linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #2a1a6e 100%);
+      padding:140px 24px 60px;
+      text-align:center; color:#fff;
+      position:relative; overflow:hidden;
+    }
+    .menu-hero::before {
+      content:''; position:absolute; top:-80px; right:-80px;
+      width:320px; height:320px; border-radius:50%;
+      background:rgba(224,25,125,0.18); pointer-events:none;
+    }
+    .menu-hero-label {
+      display:inline-block; font-size:0.72rem; font-weight:800;
+      letter-spacing:2.5px; text-transform:uppercase;
+      color:rgba(249,180,217,0.9); margin-bottom:14px;
+    }
+    .menu-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,5vw,3.8rem); font-weight:900; }
+    .menu-hero h1 em { font-style:italic; color:#f9b4d9; }
+    .menu-hero p { margin-top:14px; font-size:1rem; opacity:0.7; }
+
+    .cat-nav {
+      position:sticky; top:68px; z-index:100;
+      background:rgba(255,255,255,0.97);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(26,63,163,0.08);
+      padding:0 24px;
+      box-shadow:0 2px 12px rgba(26,63,163,0.06);
+    }
+    .cat-nav-inner {
+      max-width:1100px; margin:0 auto;
+      display:flex; gap:4px; overflow-x:auto;
+      scrollbar-width:none; padding:12px 0;
+    }
+    .cat-nav-inner::-webkit-scrollbar { display:none; }
+    .cat-btn {
+      flex-shrink:0; padding:9px 22px; border-radius:100px;
+      border:1.5px solid rgba(26,63,163,0.15);
+      color:var(--muted); font-size:0.85rem; font-weight:700;
+      cursor:pointer; background:transparent;
+      font-family:'Nunito',sans-serif; transition:all 0.2s;
+      text-decoration:none; display:inline-block;
+    }
+    .cat-btn:hover { border-color:var(--pink); color:var(--pink); }
+    .cat-btn.active {
+      background:linear-gradient(135deg,var(--blue),var(--blue-light));
+      color:#fff; border-color:transparent;
+      box-shadow:0 4px 14px rgba(26,63,163,0.3);
+    }
+
+    .menu-body { max-width:1100px; margin:0 auto; padding:48px 24px 80px; }
+
+    .cat-section { margin-bottom:64px; scroll-margin-top:140px; }
+    .cat-header { display:flex; align-items:center; gap:16px; margin-bottom:28px; }
+    .cat-icon {
+      width:52px; height:52px; border-radius:14px;
+      background:linear-gradient(135deg,var(--blue),var(--pink));
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.6rem; flex-shrink:0;
+      box-shadow:0 6px 18px rgba(224,25,125,0.25);
+    }
+    .cat-title-wrap h2 { font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:900; color:var(--blue-dark); }
+    .cat-title-wrap p { font-size:0.85rem; color:var(--muted); margin-top:3px; }
+    .cat-divider { height:2px; flex:1; background:linear-gradient(90deg,rgba(26,63,163,0.15),transparent); border-radius:2px; }
+
+    .items-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+    .item-card {
+      background:#fff; border-radius:14px; padding:22px 24px;
+      border:1.5px solid rgba(26,63,163,0.07);
+      transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .item-card:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(26,63,163,0.1); }
+    .item-name-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+    .veg-box {
+      width:16px; height:16px; border:1.5px solid #2e7d32;
+      border-radius:3px; flex-shrink:0; display:flex;
+      align-items:center; justify-content:center; margin-top:1px;
+    }
+    .veg-box::after { content:''; width:7px; height:7px; border-radius:50%; background:#4caf50; display:block; }
+    .item-name { font-size:1rem; font-weight:800; color:var(--text); line-height:1.3; }
+    .item-desc { font-size:0.84rem; line-height:1.75; color:var(--muted); }
+    .item-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+    .tag-bestseller {
+      font-size:0.68rem; padding:3px 10px; border-radius:100px;
+      background:linear-gradient(135deg,var(--pink),var(--pink-light));
+      color:#fff; font-weight:800;
+    }
+    .tag-regular {
+      font-size:0.68rem; padding:3px 10px; border-radius:100px;
+      border:1px solid rgba(26,63,163,0.2); color:var(--blue); font-weight:700;
+    }
+
+    .order-strip {
+      background:linear-gradient(135deg,var(--blue-dark),#1a1a5e 50%,#3d0030);
+      border-radius:20px; padding:48px 40px;
+      text-align:center; color:#fff; margin-top:20px;
+    }
+    .order-strip h3 { font-family:'Playfair Display',serif; font-size:1.8rem; margin-bottom:10px; }
+    .order-strip p { opacity:0.7; margin-bottom:28px; }
+    .platform-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .p-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:14px 28px; border-radius:100px;
+      text-decoration:none; font-weight:800; font-size:0.9rem;
+      transition:transform 0.2s, box-shadow 0.2s;
+    }
+    .p-btn:hover { transform:translateY(-3px); }
+    .zomato { background:#e23744; color:#fff; box-shadow:0 6px 20px rgba(226,55,68,0.4); }
+    .swiggy { background:#fc8019; color:#fff; box-shadow:0 6px 20px rgba(252,128,25,0.4); }
+
+    footer {
+      background:var(--blue-dark); color:rgba(255,255,255,0.45);
+      text-align:center; padding:32px 24px; font-size:0.82rem;
+    }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:900; color:#fff; margin-bottom:6px; }
+    .footer-logo span { color:var(--pink); }
+
+    @media(max-width:768px){
+      nav { padding:14px 18px; }
+      .menu-hero { padding:120px 20px 48px; }
+      .items-grid { grid-template-columns:1fr; }
+      .order-strip { padding:36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">🤚</div>
+    <div>
+      <div class="logo-text">Best In <span>Klass</span></div>
+      <div class="logo-sub">Pure Veg Restaurant</div>
+    </div>
+  </a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="menu-hero">
+  <div class="menu-hero-label">Pure Vegetarian · Whitefield</div>
+  <h1>Our <em>Full Menu</em></h1>
+  <p>Every item freshly prepared daily &nbsp;·&nbsp; Prices shown on Zomato &amp; Swiggy</p>
+</div>
+
+<div class="cat-nav">
+  <div class="cat-nav-inner">
+    <a href="#breakfast"  class="cat-btn active">🌅 Breakfast</a>
+    <a href="#tiffin"     class="cat-btn">🍽️ Tiffin &amp; Snacks</a>
+    <a href="#meals"      class="cat-btn">🍛 Meals &amp; Thali</a>
+    <a href="#rice"       class="cat-btn">🍚 Rice &amp; Breads</a>
+    <a href="#chinese"    class="cat-btn">🥡 Indo-Chinese</a>
+    <a href="#beverages"  class="cat-btn">☕ Beverages</a>
+    <a href="#sweets"     class="cat-btn">🍮 Sweets</a>
+  </div>
+</div>
+
+<div class="menu-body">
+
+  <!-- BREAKFAST -->
+  <div class="cat-section" id="breakfast">
+    <div class="cat-header">
+      <div class="cat-icon">🌅</div>
+      <div class="cat-title-wrap"><h2>Breakfast</h2><p>Served fresh every morning</p></div>
+      <div class="cat-divider"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Masala Dosa</div></div><div class="item-desc">Crispy fermented rice crepe with spiced potato filling, served with sambar &amp; two chutneys.</div><div class="item-tags"><span class="tag-bestseller">⭐ Bestseller</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Idli (2 pcs)</div></div><div class="item-desc">Fluffy steamed rice cakes served with piping hot sambar and fresh coconut chutney.</div><div class="item-tags"><span class="tag-regular">Classic</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Set Dosa (3 pcs)</div></div><div class="item-desc">Thick, spongy small dosas served with potato curry &amp; chutney.</div><div class="item-tags"><span class="tag-bestseller">⭐ Bestseller</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Plain Dosa</div></div><div class="item-desc">Golden thin crispy dosa with sambar and chutney. Light and satisfying.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Rava Idli</div></div><div class="item-desc">Soft semolina idlis topped with cashews &amp; curry leaves, served with chutney.</div><div class="item-tags"><span class="tag-regular">Chef's Pick</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Pongal</div></div><div class="item-desc">Comforting khichdi of rice &amp; moong dal, tempered with pepper, cumin &amp; ghee.</div><div class="item-tags"><span class="tag-regular">Morning Special</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Poha</div></div><div class="item-desc">Flattened rice cooked with onions, mustard, turmeric, and a squeeze of lemon.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Upma</div></div><div class="item-desc">Savory semolina porridge with vegetables, mustard, and curry leaves.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Idli Vada Combo</div></div><div class="item-desc">2 soft idlis + 1 crispy medu vada, served with sambar and chutney.</div><div class="item-tags"><span class="tag-regular">Combo</span></div></div>
+    </div>
+  </div>
+
+  <!-- TIFFIN -->
+  <div class="cat-section" id="tiffin">
+    <div class="cat-header">
+      <div class="cat-icon">🍽️</div>
+      <div class="cat-title-wrap"><h2>Tiffin &amp; Snacks</h2><p>Quick bites and light plates</p></div>
+      <div class="cat-divider"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Medu Vada (2 pcs)</div></div><div class="item-desc">Crispy lentil fritters with a soft interior, served with sambar and coconut chutney.</div><div class="item-tags"><span class="tag-bestseller">⭐ Bestseller</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Rava Dosa</div></div><div class="item-desc">Lacy, crispy semolina dosa with onions and peppercorns.</div><div class="item-tags"><span class="tag-regular">Popular</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Mysore Masala Dosa</div></div><div class="item-desc">Red chutney-spread dosa with spiced potato filling — bold, rich, and flavourful.</div><div class="item-tags"><span class="tag-regular">🌶 Spicy</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Onion Uttapam</div></div><div class="item-desc">Thick rice pancake topped with fresh onions, tomatoes, and green chillies.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Bread Upma</div></div><div class="item-desc">Crispy bread tossed with onions, tomatoes, spices, and fresh coriander.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Aloo Bonda (2 pcs)</div></div><div class="item-desc">Golden fried potato dumplings in a crispy gram flour batter, served with chutney.</div><div class="item-tags"><span class="tag-regular">Evening Snack</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Punugulu</div></div><div class="item-desc">Mini deep-fried idli batter balls, crispy outside and soft inside, served with chutney.</div></div>
+    </div>
+  </div>
+
+  <!-- MEALS -->
+  <div class="cat-section" id="meals">
+    <div class="cat-header">
+      <div class="cat-icon">🍛</div>
+      <div class="cat-title-wrap"><h2>Meals &amp; Thali</h2><p>Full, satisfying lunch and dinner plates</p></div>
+      <div class="cat-divider"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">South Indian Meals</div></div><div class="item-desc">Full rice plate with dal, 2 sabzis, sambar, rasam, papad, pickle, and sweet.</div><div class="item-tags"><span class="tag-bestseller">⭐ Bestseller</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">North Indian Thali</div></div><div class="item-desc">Dal makhani, paneer sabzi, 2 rotis, steamed rice, salad, and sweet.</div><div class="item-tags"><span class="tag-regular">Weekend Special</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Mini Meals</div></div><div class="item-desc">Rice, sambar, 1 sabzi, rasam, and papad. A lighter, value lunch option.</div><div class="item-tags"><span class="tag-regular">Light Meal</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Paneer Butter Masala + Roti</div></div><div class="item-desc">Rich, creamy tomato-based paneer curry served with 3 soft rotis.</div><div class="item-tags"><span class="tag-regular">Family Favourite</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Dal Fry + Roti</div></div><div class="item-desc">Tempered yellow lentils with ghee, cumin, and dried red chillies. Served with 3 rotis.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Curd Rice</div></div><div class="item-desc">Cooling yoghurt rice seasoned with mustard, curry leaves, mild green chilli, and pomegranate.</div><div class="item-tags"><span class="tag-regular">Cooling</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Rasam Rice</div></div><div class="item-desc">Tangy tamarind pepper rasam poured over steaming rice. A South Indian classic.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Dal Rice</div></div><div class="item-desc">Simple comforting yellow dal with steamed rice and a drizzle of ghee.</div></div>
+    </div>
+  </div>
+
+  <!-- RICE & BREADS -->
+  <div class="cat-section" id="rice">
+    <div class="cat-header">
+      <div class="cat-icon">🍚</div>
+      <div class="cat-title-wrap"><h2>Rice &amp; Breads</h2><p>Standalone rice dishes and rotis</p></div>
+      <div class="cat-divider"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Veg Biryani</div></div><div class="item-desc">Fragrant basmati rice cooked with seasonal vegetables and whole spices, served with raita.</div><div class="item-tags"><span class="tag-bestseller">⭐ Bestseller</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Veg Fried Rice</div></div><div class="item-desc">Wok-tossed rice with fresh vegetables, soy sauce, and spring onions.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Lemon Rice</div></div><div class="item-desc">Tangy rice seasoned with lemon, mustard seeds, peanuts, and turmeric.</div><div class="item-tags"><span class="tag-regular">South Indian</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Tamarind Rice (Puliyogare)</div></div><div class="item-desc">Rice cooked with a rich tamarind, peanut, and spice paste. A Karnataka classic.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Chapati (2 pcs)</div></div><div class="item-desc">Soft whole wheat flatbreads served plain or with your choice of curry.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Parotta (2 pcs)</div></div><div class="item-desc">Flaky, layered Kerala-style flatbread, best paired with salna or kurma.</div><div class="item-tags"><span class="tag-regular">Popular</span></div></div>
+    </div>
+  </div>
+
+  <!-- INDO-CHINESE -->
+  <div class="cat-section" id="chinese">
+    <div class="cat-header">
+      <div class="cat-icon">🥡</div>
+      <div class="cat-title-wrap"><h2>Indo-Chinese</h2><p>Desi-style Chinese favourites</p></div>
+      <div class="cat-divider"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Gobi Manchurian (Dry)</div></div><div class="item-desc">Crispy fried cauliflower tossed in a spicy, tangy manchurian sauce with spring onions.</div><div class="item-tags"><span class="tag-bestseller">⭐ Bestseller</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Gobi Manchurian (Gravy)</div></div><div class="item-desc">Cauliflower in a rich, saucy manchurian gravy. Best paired with fried rice.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Veg Hakka Noodles</div></div><div class="item-desc">Stir-fried noodles with crunchy vegetables, soy sauce, and chilli vinegar.</div><div class="item-tags"><span class="tag-regular">Popular</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Paneer Chilli (Dry)</div></div><div class="item-desc">Crispy paneer cubes tossed with capsicum, onions, and spicy chilli sauce.</div><div class="item-tags"><span class="tag-regular">🌶 Spicy</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Veg Manchow Soup</div></div><div class="item-desc">Thick, spiced clear soup with vegetables and crunchy fried noodles on top.</div><div class="item-tags"><span class="tag-regular">Starter</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Spring Rolls (2 pcs)</div></div><div class="item-desc">Crispy fried rolls stuffed with spiced vegetables and glass noodles.</div></div>
+    </div>
+  </div>
+
+  <!-- BEVERAGES -->
+  <div class="cat-section" id="beverages">
+    <div class="cat-header">
+      <div class="cat-icon">☕</div>
+      <div class="cat-title-wrap"><h2>Beverages</h2><p>Hot &amp; cold drinks to refresh</p></div>
+      <div class="cat-divider"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Filter Coffee</div></div><div class="item-desc">Strong South Indian decoction blended with frothy hot milk. The quintessential morning brew.</div><div class="item-tags"><span class="tag-bestseller">⭐ Must Try</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Masala Chai</div></div><div class="item-desc">Ginger-cardamom spiced tea, sweetened just right. A comforting classic.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Fresh Lime Soda</div></div><div class="item-desc">Chilled lemonade — sweet, salty, or mixed. The perfect afternoon refresher.</div><div class="item-tags"><span class="tag-regular">Refreshing</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Buttermilk (Majjige)</div></div><div class="item-desc">Chilled spiced lassi with cumin, coriander, curry leaves, and a hint of ginger.</div><div class="item-tags"><span class="tag-regular">Cooling</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Mango Lassi</div></div><div class="item-desc">Thick blended yoghurt with sweet Alphonso mango pulp. Seasonal and indulgent.</div><div class="item-tags"><span class="tag-regular">Seasonal</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Cold Coffee</div></div><div class="item-desc">Chilled blended coffee with milk, sugar, and a hint of vanilla.</div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Badam Milk</div></div><div class="item-desc">Warm or chilled almond-flavoured sweetened milk with saffron and cardamom.</div><div class="item-tags"><span class="tag-regular">Healthy</span></div></div>
+    </div>
+  </div>
+
+  <!-- SWEETS -->
+  <div class="cat-section" id="sweets">
+    <div class="cat-header">
+      <div class="cat-icon">🍮</div>
+      <div class="cat-title-wrap"><h2>Sweets &amp; Desserts</h2><p>End your meal on a sweet note</p></div>
+      <div class="cat-divider"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Kesari Bath</div></div><div class="item-desc">Semolina pudding sweetened with sugar, flavoured with saffron, garnished with cashews &amp; raisins.</div><div class="item-tags"><span class="tag-bestseller">⭐ Bestseller</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Gulab Jamun (2 pcs)</div></div><div class="item-desc">Soft milk-solid dumplings soaked in rose-cardamom sugar syrup. Warm and heavenly.</div><div class="item-tags"><span class="tag-regular">Classic</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Payasam</div></div><div class="item-desc">Traditional South Indian kheer with rice, jaggery, coconut milk, and cardamom.</div><div class="item-tags"><span class="tag-regular">Festival Special</span></div></div>
+      <div class="item-card"><div class="item-name-row"><div class="veg-box"></div><div class="item-name">Ice Cream (1 scoop)</div></div><div class="item-desc">Creamy single scoop of vanilla, chocolate, or mango ice cream.</div></div>
+    </div>
+  </div>
+
+  <div class="order-strip">
+    <h3>Ready to order? 🍽️</h3>
+    <p>Check current prices and order online via Zomato or Swiggy</p>
+    <div class="platform-btns">
+      <a href="https://www.zomato.com/bangalore/best-in-klass-whitefield-bangalore/order" target="_blank" class="p-btn zomato">🔴 Order on Zomato</a>
+      <a href="https://www.swiggy.com/city/bangalore/best-in-klass-sigma-soft-tech-park-whitefield-rest50858" target="_blank" class="p-btn swiggy">🟠 Order on Swiggy</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Best In <span>Klass</span></div>
+  <p><strong>Pure Vegetarian · South Indian Cuisine · Fresh Daily</strong></p>
+  <p style="margin-top:6px;">Sigma Soft Tech Park, Whitefield, Bengaluru – 560066</p>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('.cat-section');
+  const btns = document.querySelectorAll('.cat-btn');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 160) current = sec.id;
+    });
+    btns.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('href') === '#' + current) btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
